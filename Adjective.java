@@ -26,7 +26,7 @@ public class Adjective extends Word {
     public String toString(){
 
         return this.partOfSpeech + ": " +
-                this.latin + "; " + this.translation;
+                this.latin + "; " + this.translation + "\n";
 
     }
 }

@@ -28,18 +28,32 @@ public class Word {
 
     public static void assignPartOfSpeech(Word word){
 
-        if (word.partOfSpeech.equals("Verb")){
-
+        if (word.partOfSpeech.equals("Verb"))
+        {
            Main.words[Main.count] = new Verb(word.translation, word.latin);
            Main.count++;
-        } else if (word.partOfSpeech.equals("Noun")){
-
+        }
+        else if (word.partOfSpeech.equals("Noun")){
             Main.words[Main.count] = new Noun(word.translation, word.latin);
             Main.count++;
-        } else if (word.partOfSpeech.equals("Adjective")){
-
+        }
+        else if (word.partOfSpeech.equals("Adjective")){
            Main.words[Main.count] = new Adjective(word.translation, word.latin);
            Main.count++;
+        }
+        else if (word.partOfSpeech.equals("Preposition")){
+            Main.words[Main.count] = new Preposition(word.translation, word.latin);
+            Main.count++;
+        }
+        else if (word.partOfSpeech.equals("Conjunction"))
+        {
+            Main.words[Main.count] = new Conjunction(word.translation, word.latin);
+            Main.count++;
+        }
+        else if (word.partOfSpeech.equals("Adverb"))
+        {
+            Main.words[Main.count] = new Adverb(word.translation, word.latin);
+            Main.count++;
         }
     }
 

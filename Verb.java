@@ -18,17 +18,6 @@ public class Verb extends Word{
 
     }
 
-    public Verb(){
-
-    }
-
-    public void setTranslation(String translation){
-        this.translation = translation;
-    }
-
-    public void setLatin(String latin){
-        this.latin = latin;
-    }
     
     public String toString(){
 

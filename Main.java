@@ -18,6 +18,12 @@ import org.json.JSONObject;
          String words = scanner.nextLine();
          String[] wordsArray = words.split(" ");
 
+//         for (String word : wordsArray){
+//
+//             handler.changeWord(word);
+//             handler.sendRequest();
+//             System.out.println(handler.response.body());
+//         }
 
          for (String word : wordsArray){
 
