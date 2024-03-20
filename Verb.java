@@ -17,8 +17,6 @@ public class Verb extends Word{
 
 
     }
-
-    
     public String toString(){
 
         return this.partOfSpeech + " - " + this.type + ": " +

@@ -50,6 +50,10 @@ public class HttpHandler {
             e.printStackTrace();
         }
 
+        if (this.response.body().length() == 2){
+            this.response = null;
+        }
+
     }
 
 

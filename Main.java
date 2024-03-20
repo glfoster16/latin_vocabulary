@@ -29,7 +29,15 @@ import org.json.JSONObject;
 
              handler.changeWord(word);
              handler.sendRequest();
-             JSONObject[] jsonObjects = jsonParser.stringToJSON(handler.response.body());
+             JSONObject[] jsonObjects;
+
+             if (handler.response != null) {
+                  jsonObjects = jsonParser.stringToJSON(handler.response.body());
+             } else{
+                 Main.words[Main.count] = new Error(word);
+                 Main.count++;
+                 continue;
+             }
 
              if (jsonObjects.length > 1){
 
@@ -54,8 +62,12 @@ import org.json.JSONObject;
 
              }
 
-             System.out.println(Arrays.toString(Main.words));
-
+             for (int i = 0; i < Main.words.length; i++) {
+                 if (Main.words[i] == null){
+                     break;
+                 }
+                 System.out.println(Main.words[i]);
+             }
          }
 
 
