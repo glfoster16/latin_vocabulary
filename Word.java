@@ -7,6 +7,8 @@ public class Word {
     String latin;
     JSONObject json;
 
+    String searchedWord;
+
     public Word(JSONObject object) {
 
         this.json = object;
@@ -30,30 +32,30 @@ public class Word {
 
         if (word.partOfSpeech.equals("Verb"))
         {
-           Main.words[Main.count] = new Verb(word.translation, word.latin);
-           Main.count++;
+           Main.words.add(new Verb(word.translation, word.latin));
+
         }
         else if (word.partOfSpeech.equals("Noun")){
-            Main.words[Main.count] = new Noun(word.translation, word.latin);
-            Main.count++;
+            Main.words.add(new Noun(word.translation, word.latin));
+
         }
         else if (word.partOfSpeech.equals("Adjective")){
-           Main.words[Main.count] = new Adjective(word.translation, word.latin);
-           Main.count++;
+           Main.words.add(new Adjective(word.translation, word.latin));
+
         }
         else if (word.partOfSpeech.equals("Preposition")){
-            Main.words[Main.count] = new Preposition(word.translation, word.latin);
-            Main.count++;
+            Main.words.add(new Preposition(word.translation, word.latin));
+
         }
         else if (word.partOfSpeech.equals("Conjunction"))
         {
-            Main.words[Main.count] = new Conjunction(word.translation, word.latin);
-            Main.count++;
+            Main.words.add(new Conjunction(word.translation, word.latin));
+
         }
         else if (word.partOfSpeech.equals("Adverb"))
         {
-            Main.words[Main.count] = new Adverb(word.translation, word.latin);
-            Main.count++;
+            Main.words.add(new Adverb(word.translation, word.latin));
+
         }
     }
 

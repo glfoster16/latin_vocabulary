@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import userInput.getVariable;
@@ -6,16 +7,15 @@ import org.json.JSONObject;
 
  class Main {
 
-     public static Word[] words = new Word[10000];
-     public static int count = 0;
+     public static ArrayList<Word> words = new ArrayList<>();
      public static void main(String[] args) {
 
-         Scanner scanner = new Scanner(System.in);
+
          HttpHandler handler = new HttpHandler();
          JsonParser jsonParser = new JsonParser();
 
          System.out.println("What words do you want to search for? Separate words with one space");
-         String words = scanner.nextLine();
+         String words = getVariable.getString();
          String[] wordsArray = words.split(" ");
 
 //         for (String word : wordsArray){
@@ -25,24 +25,23 @@ import org.json.JSONObject;
 //             System.out.println(handler.response.body());
 //         }
 
-         for (String word : wordsArray){
+         for (String word : wordsArray) {
 
              handler.changeWord(word);
              handler.sendRequest();
              JSONObject[] jsonObjects;
 
              if (handler.response != null) {
-                  jsonObjects = jsonParser.stringToJSON(handler.response.body());
-             } else{
-                 Main.words[Main.count] = new Error(word);
-                 Main.count++;
+                 jsonObjects = jsonParser.stringToJSON(handler.response.body());
+             } else {
+                 Main.words.add(new Error(word));
                  continue;
              }
 
-             if (jsonObjects.length > 1){
+             if (jsonObjects.length > 1) {
 
                  System.out.println("There are multiple definitions for " + word + ". Choose one.");
-                 for (int i = 0; i < jsonObjects.length; i++){
+                 for (int i = 0; i < jsonObjects.length; i++) {
 
                      System.out.println((i + 1) + ")\t" + jsonObjects[i].getJSONObject("type").get("label") +
                              ": " + jsonObjects[i].get("full_name"));
@@ -55,21 +54,19 @@ import org.json.JSONObject;
                  Word.assignPartOfSpeech(new Word(jsonObjects[choice]));
 
 
-             } else if (jsonObjects.length == 1){
+             } else if (jsonObjects.length == 1) {
 
                  Word.assignPartOfSpeech(new Word(jsonObjects[0]));
-
-
              }
 
-             for (int i = 0; i < Main.words.length; i++) {
-                 if (Main.words[i] == null){
+             for (int i = 0; i < Main.words.size(); i++) {
+                 if (Main.words.get(i) == null) {
                      break;
                  }
-                 System.out.println(Main.words[i]);
+                 System.out.println(Main.words.get(i));
              }
-         }
 
+         }
 
      }
 
