@@ -8,7 +8,24 @@ public class Noun extends Word{
 
         this.partOfSpeech = "Noun";
         this.translation = translation;
-        this.latin = latin;
+        this.latin = cleanLatin(latin);
+
+    }
+
+    public String toString(){
+
+        return this.partOfSpeech + ": " +
+                this.latin + "; " + this.translation;
+
+    }
+
+    public String cleanLatin(String latin){
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(latin);
+        builder.delete(latin.length() - 2, latin.length());
+
+        return builder.toString();
 
     }
 

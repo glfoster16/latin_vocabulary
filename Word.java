@@ -1,6 +1,6 @@
 import org.json.JSONObject;
 
-public abstract class Word {
+public class Word {
 
     String translation;
     String partOfSpeech;
@@ -26,7 +26,7 @@ public abstract class Word {
         this.json = object;
     }
 
-    public void assignPartOfSpeech(Word word){
+    public static void assignPartOfSpeech(Word word){
 
         if (word.partOfSpeech.equals("Verb")){
 
@@ -36,6 +36,10 @@ public abstract class Word {
 
             Main.words[Main.count] = new Noun(word.translation, word.latin);
             Main.count++;
+        } else if (word.partOfSpeech.equals("Adjective")){
+
+           Main.words[Main.count] = new Adjective(word.translation, word.latin);
+           Main.count++;
         }
     }
 
