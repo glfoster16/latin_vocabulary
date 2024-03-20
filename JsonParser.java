@@ -1,6 +1,7 @@
 import org.json.JSONObject;
 import org.json.JSONException;
 import java.lang.StringBuilder;
+import java.util.ArrayList;
 
 public class JsonParser {
 
@@ -21,7 +22,7 @@ public class JsonParser {
             }
         }
 
-        return jsonObjects;
+        return cleanJSONObjects(jsonObjects);
     }
 
     public String[] prepareString(String string){
@@ -43,7 +44,29 @@ public class JsonParser {
 
     }
 
+    public JSONObject[] cleanJSONObjects(JSONObject[] jsonObjects){
+
+        ArrayList<JSONObject> nonPhraseObjects = new ArrayList<>();
+        for (JSONObject object : jsonObjects){
+
+            if (!object.getJSONObject("type").get("label").equals("Phrase")){
+
+                nonPhraseObjects.add(object);
+            }
+
+        }
+
+        JSONObject[] returnObjects = new JSONObject[nonPhraseObjects.size()];
+        for (int i = 0; i < nonPhraseObjects.size(); i++){
+
+            returnObjects[i] = nonPhraseObjects.get(i);
+        }
+
+        return returnObjects;
 
     }
+
+
+}
 
 
