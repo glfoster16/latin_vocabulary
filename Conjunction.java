@@ -12,6 +12,10 @@ public class Conjunction extends Word{
         this.translation = translation;
         this.latin = latin;
 
+        super.partOfSpeech = "Conjunction";
+        super.translation = translation;
+        super.latin = latin;
+
     }
 
     public String toString(){

@@ -10,6 +10,10 @@ public class Noun extends Word{
         this.translation = translation;
         this.latin = cleanLatin(latin);
 
+        super.partOfSpeech = "Noun";
+        super.translation = translation;
+        super.latin = cleanLatin(latin);
+
     }
 
     public String toString(){
@@ -24,6 +28,10 @@ public class Noun extends Word{
         StringBuilder builder = new StringBuilder();
         builder.append(latin);
         builder.delete(latin.length() - 2, latin.length());
+
+        String gender = builder.substring(builder.length() - 5, builder.length());
+        this.partOfSpeech += (" -" + gender);
+        builder.delete(builder.length() - 5, builder.length());
 
         return builder.toString();
 

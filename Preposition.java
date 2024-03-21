@@ -11,6 +11,10 @@ public class Preposition extends Word{
         this.translation = translation;
         this.latin = latin;
 
+        super.partOfSpeech = "Noun";
+        super.translation = translation;
+        super.latin = latin;
+
     }
 
     public String toString(){

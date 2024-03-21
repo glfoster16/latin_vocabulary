@@ -10,9 +10,9 @@ public class Adjective extends Word {
         this.translation = translation;
         this.latin = cleanLatin(latin);
 
-    }
-
-    public Adjective(){
+        super.partOfSpeech = "Adjective";
+        super.translation = translation;
+        super.latin = cleanLatin(latin);
 
     }
 

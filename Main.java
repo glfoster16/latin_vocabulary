@@ -18,13 +18,6 @@ import org.json.JSONObject;
          String words = getVariable.getString();
          String[] wordsArray = words.split(" ");
 
-//         for (String word : wordsArray){
-//
-//             handler.changeWord(word);
-//             handler.sendRequest();
-//             System.out.println(handler.response.body());
-//         }
-
          for (String word : wordsArray) {
 
              handler.changeWord(word);
@@ -59,14 +52,16 @@ import org.json.JSONObject;
                  Word.assignPartOfSpeech(new Word(jsonObjects[0]));
              }
 
-             for (int i = 0; i < Main.words.size(); i++) {
-                 if (Main.words.get(i) == null) {
+             for (Word word1 : Main.words){
+                 if (word1 == null){
                      break;
                  }
-                 System.out.println(Main.words.get(i));
+                 System.out.println("printing: " + word1.latin);
+                 System.out.println(word1);
              }
 
          }
+         System.out.println(Main.words);
 
      }
 

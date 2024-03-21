@@ -18,7 +18,7 @@ public class JsonParser {
                 JSONObject jsonObject = new JSONObject(formattedStrings[i]);
                 jsonObjects[i] = jsonObject;
             } catch (JSONException e) {
-                System.out.println("Error " + e.toString());
+                System.out.println("Error " + e);
             }
         }
 
