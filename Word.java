@@ -57,6 +57,10 @@ public class Word {
             Main.words.add(new Adverb(word.translation, word.latin));
 
         }
+        else if (word.partOfSpeech.equals("Numeral"))
+        {
+            Main.words.add(new Numeral(word.translation, word.latin));
+        }
     }
 
 }

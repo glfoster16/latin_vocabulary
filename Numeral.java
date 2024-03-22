@@ -1,17 +1,17 @@
-public class Preposition extends Word{
+public class Numeral extends Word{
 
     String translation;
     String latin;
     String partOfSpeech;
 
     // Latin does not need cleaning
-    public Preposition(String translation, String latin){
+    public Numeral(String translation, String latin){
 
-        this.partOfSpeech = "Preposition";
+        this.partOfSpeech = "Numeral";
         this.translation = translation;
         this.latin = latin;
 
-        super.partOfSpeech = "Preposition";
+        super.partOfSpeech = "Numeral";
         super.translation = translation;
         super.latin = latin;
 
@@ -23,5 +23,6 @@ public class Preposition extends Word{
                 this.latin + "; " + this.translation + "\n";
 
     }
+
 
 }
