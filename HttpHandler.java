@@ -1,3 +1,4 @@
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -45,9 +46,11 @@ public class HttpHandler {
         try {
             this.response = HttpClient.newHttpClient().send(this.request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("No internet, reconnect and try again.");
+            System.exit(2);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("No internet, reconnect and try again.");
+            System.exit(2);
         }
 
         if (this.response.body().length() == 2){
