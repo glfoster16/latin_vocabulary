@@ -46,20 +46,21 @@ public class JsonParser {
 
     public JSONObject[] cleanJSONObjects(JSONObject[] jsonObjects){
 
-        ArrayList<JSONObject> nonPhraseObjects = new ArrayList<>();
+        ArrayList<JSONObject> goodObjects = new ArrayList<>();
         for (JSONObject object : jsonObjects){
 
-            if (!object.getJSONObject("type").get("label").equals("Phrase")){
+            if (!object.getJSONObject("type").get("label").equals("Phrase") &&
+            !object.getJSONObject("type").get("label").equals("Other")){
 
-                nonPhraseObjects.add(object);
+                goodObjects.add(object);
             }
 
         }
 
-        JSONObject[] returnObjects = new JSONObject[nonPhraseObjects.size()];
-        for (int i = 0; i < nonPhraseObjects.size(); i++){
+        JSONObject[] returnObjects = new JSONObject[goodObjects.size()];
+        for (int i = 0; i < goodObjects.size(); i++){
 
-            returnObjects[i] = nonPhraseObjects.get(i);
+            returnObjects[i] = goodObjects.get(i);
         }
 
         return returnObjects;
