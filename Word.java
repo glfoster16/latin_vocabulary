@@ -28,6 +28,10 @@ public class Word {
         this.json = object;
     }
 
+    // This ensures that the tables created using Apache POI won't be shifted left or right because
+    // of a substring being too long - this most commonly happened when a translation had many slashes
+    // For example, praesto: excel, surpass, be outstanding/superior/best/greater/preferable (to), prevail
+    // The outstanding/superior/best/greater/preferable is all one substring - this method splits that into two
     public String cleanTranslation(String translation){
 
         String[] parts = translation.split(" ");
