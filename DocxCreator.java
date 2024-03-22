@@ -121,27 +121,30 @@ public class DocxCreator {
 
     private void formatCell(XWPFTableCell cell){
 
-        System.out.println("partCounter = " + partCounter);
+        //System.out.println("partCounter = " + partCounter);
         cell.setWidth("7920");
         cell.setVerticalAlignment(XWPFTableCell.XWPFVertAlign.CENTER);
-        CTTc cttc1 = cell.getCTTc();
-        CTTcPr ctPr1 = cttc1.addNewTcPr();
-        ctPr1.addNewNoWrap();
+        CTTc cttc = cell.getCTTc();
+        CTTcPr ctPr = cttc.addNewTcPr();
+        ctPr.addNewNoWrap();
 
-        XWPFParagraph row1column1Paragraph = cell.addParagraph();
-        row1column1Paragraph.setAlignment(ParagraphAlignment.CENTER);
-        XWPFRun row1column1ParagraphRun = row1column1Paragraph.createRun();
-        row1column1ParagraphRun.setBold(true);
+        XWPFParagraph paragraph = cell.addParagraph();
+        paragraph.setAlignment(ParagraphAlignment.CENTER);
+        XWPFRun run = paragraph.createRun();
+        run.setBold(true);
         if (this.formattedParts.get(this.partCounter).length() +
+                this.formattedParts.get(this.partCounter + 1).length() > 70){
+            run.setFontSize(28);
+        } else if (this.formattedParts.get(this.partCounter).length() +
                 this.formattedParts.get(this.partCounter + 1).length() > 58){
-            row1column1ParagraphRun.setFontSize(35);
-        } else {
-            row1column1ParagraphRun.setFontSize(50);
+            run.setFontSize(35);
+        } else{
+            run.setFontSize(50);
         }
-        row1column1ParagraphRun.setText(this.formattedParts.get(this.partCounter));
+        run.setText(this.formattedParts.get(this.partCounter));
         this.partCounter++;
-        row1column1ParagraphRun.addBreak();
-        row1column1ParagraphRun.setText(this.formattedParts.get(this.partCounter));
+        run.addBreak();
+        run.setText(this.formattedParts.get(this.partCounter));
         this.partCounter++;
 
     }
@@ -178,6 +181,10 @@ public class DocxCreator {
 
             createTable(this.document);
         }
+        XWPFTable table = document.createTable();
+        table.getCTTbl().addNewTblPr().addNewTblW().setW(BigInteger.valueOf(15840));
+        table.getRow(0).getCell(0).setText("");
+
 
         try (FileOutputStream out = new FileOutputStream("table_output.docx")) {
             this.document.write(out);

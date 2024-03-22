@@ -12,11 +12,11 @@ public class Verb extends Word{
     public Verb(String translation, String latin){
         this.type = identifyType(latin);
         this.partOfSpeech = "Verb - " + this.type;
-        this.translation = translation;
+        this.translation = cleanTranslation(translation);
         this.latin = cleanLatin(latin, this.type);
 
         super.partOfSpeech = "Verb - " + this.type;
-        super.translation = translation;
+        super.translation = cleanTranslation(translation);
         super.latin = cleanLatin(latin, this.type);
 
     }
@@ -31,6 +31,7 @@ public class Verb extends Word{
     // fero, fers, ferre IR, tuli, latum -- IRREGULAR 1
     // conor, conaris, conari A, conatus sum (Dep.) -- DEPONENT 2
     // diffido, diffidis, diffidere C, diffisus sum, diffisum -- SEMI-DEPONENT 3
+
 
     public String cleanLatin(String latin, String type){
 

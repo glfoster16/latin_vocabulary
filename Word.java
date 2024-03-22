@@ -28,6 +28,32 @@ public class Word {
         this.json = object;
     }
 
+    public String cleanTranslation(String translation){
+
+        String[] parts = translation.split(" ");
+        StringBuilder translationBuilder = new StringBuilder();
+
+        for (String part : parts){
+
+            if(part.length() > 30){
+
+                StringBuilder builder = new StringBuilder();
+                builder.append(part);
+                builder.insert(builder.length() / 2, " ");
+
+                translationBuilder.append(builder).append(" ");
+                continue;
+
+            }
+
+            translationBuilder.append(part).append(" ");
+
+        }
+
+        return translationBuilder.toString();
+
+    }
+
     public static void assignPartOfSpeech(Word word){
 
         if (word.partOfSpeech.equals("Verb"))

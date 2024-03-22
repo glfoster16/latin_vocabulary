@@ -8,11 +8,11 @@ public class Numeral extends Word{
     public Numeral(String translation, String latin){
 
         this.partOfSpeech = "Numeral";
-        this.translation = translation;
+        this.translation = cleanTranslation(translation);
         this.latin = latin;
 
         super.partOfSpeech = "Numeral";
-        super.translation = translation;
+        super.translation = cleanTranslation(translation);
         super.latin = latin;
 
     }

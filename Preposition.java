@@ -8,11 +8,11 @@ public class Preposition extends Word{
     public Preposition(String translation, String latin){
 
         this.partOfSpeech = "Preposition";
-        this.translation = translation;
+        this.translation = cleanTranslation(translation);
         this.latin = latin;
 
         super.partOfSpeech = "Preposition";
-        super.translation = translation;
+        super.translation = cleanTranslation(translation);
         super.latin = latin;
 
     }

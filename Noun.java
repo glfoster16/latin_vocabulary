@@ -7,11 +7,11 @@ public class Noun extends Word{
     public Noun(String translation, String latin){
 
         this.partOfSpeech = "Noun";
-        this.translation = translation;
+        this.translation = cleanTranslation(translation);
         this.latin = cleanLatin(latin);
 
         super.partOfSpeech = this.partOfSpeech;
-        super.translation = translation;
+        super.translation = cleanTranslation(translation);
         super.latin = cleanLatin(latin);
 
     }
@@ -25,13 +25,20 @@ public class Noun extends Word{
 
     public String cleanLatin(String latin){
 
+
         StringBuilder builder = new StringBuilder();
         builder.append(latin);
-        builder.delete(latin.length() - 2, latin.length());
 
-        String gender = builder.substring(builder.length() - 5, builder.length());
-        this.partOfSpeech += (" -" + gender);
-        builder.delete(builder.length() - 5, builder.length());
+        // For some reason not all nouns include the gender in the latin
+        // The gender is always in brackets and brackets are never in latin words
+        // So, this makes sure we don't cut off part of a word if it doesn't have a gender
+        if (latin.contains("[")) {
+            builder.delete(latin.length() - 2, latin.length());
+
+            String gender = builder.substring(builder.length() - 5, builder.length());
+            this.partOfSpeech += (" -" + gender);
+            builder.delete(builder.length() - 5, builder.length());
+        }
 
         return builder.toString();
 

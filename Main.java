@@ -36,7 +36,7 @@ import org.json.JSONObject;
 
              if (jsonObjects.length > 1) {
 
-                 System.out.println("There are multiple definitions for " + word + ". Choose one.");
+                 System.out.println("\n\nThere are multiple definitions for " + word + ". Choose one.");
                  for (int i = 0; i < jsonObjects.length; i++) {
 
                      System.out.println((i + 1) + ")\t" + jsonObjects[i].getJSONObject("type").get("label") +
@@ -55,16 +55,16 @@ import org.json.JSONObject;
                  Word.assignPartOfSpeech(new Word(jsonObjects[0]));
              }
 
-             for (Word word1 : Main.words){
-                 if (word1 == null){
-                     break;
-                 }
-                 System.out.println("printing: " + word1.latin);
-                 System.out.println(word1);
-             }
+//             for (Word word1 : Main.words){
+//                 if (word1 == null){
+//                     break;
+//                 }
+//                 System.out.println("printing: " + word1.latin);
+//                 System.out.println(word1);
+//             }
 
          }
-         System.out.println(Main.words);
+         //System.out.println(Main.words);
 
          DocxCreator docxCreator = new DocxCreator(Main.words);
          docxCreator.createDocument();
