@@ -10,7 +10,7 @@ public class Noun extends Word{
         this.translation = translation;
         this.latin = cleanLatin(latin);
 
-        super.partOfSpeech = "Noun";
+        super.partOfSpeech = this.partOfSpeech;
         super.translation = translation;
         super.latin = cleanLatin(latin);
 

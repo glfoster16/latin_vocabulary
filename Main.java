@@ -62,6 +62,8 @@ import org.json.JSONObject;
 
          }
          System.out.println(Main.words);
+         DocxCreator creator = new DocxCreator(Main.words);
+         creator.createDocument();
 
      }
 
