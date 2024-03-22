@@ -1,6 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import userInput.getVariable;
 import org.json.JSONObject;
 
@@ -8,7 +11,7 @@ import org.json.JSONObject;
  class Main {
 
      public static ArrayList<Word> words = new ArrayList<>();
-     public static void main(String[] args) {
+     public static void main(String[] args){
 
 
          HttpHandler handler = new HttpHandler();
@@ -62,8 +65,10 @@ import org.json.JSONObject;
 
          }
          System.out.println(Main.words);
-         DocxCreator creator = new DocxCreator(Main.words);
-         creator.createDocument();
+
+         DocxCreator docxCreator = new DocxCreator(Main.words);
+         docxCreator.createDocument();
+
 
      }
 

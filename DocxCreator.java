@@ -42,10 +42,7 @@ public class DocxCreator {
                 adding = true;
             }
         }
-//        this.secondTableMap.put(0,1);
-//        this.secondTableMap.put(1,0);
-//        this.secondTableMap.put(2,3);
-//        this.secondTableMap.put(3,2);
+
     }
 
     private ArrayList<String> formatParts(ArrayList<Word> words){
@@ -181,7 +178,6 @@ public class DocxCreator {
 
             createTable(this.document);
         }
-
 
         try (FileOutputStream out = new FileOutputStream("table_output.docx")) {
             this.document.write(out);
