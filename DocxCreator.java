@@ -18,20 +18,22 @@ public class DocxCreator {
     private int partCounter;
     private int tableNumber;
     private XWPFDocument document;
-    private Map<Integer, Integer> secondTableMap;
+    private HashMap<Integer, Integer> secondTableMap;
+    private HashMap<Integer, Integer> fontMap;
 
     public DocxCreator(ArrayList<Word> words){
 
         this.tableNumber = getTableNumber(words);
         this.secondTableMap = new HashMap<>();
-        configureHashMap(this.tableNumber);
+        this.fontMap = new HashMap<>();
+        configureHashMaps(this.tableNumber);
         this.partCounter = 0;
         this.formattedParts = formatParts(words);
         this.document = new XWPFDocument();
         setupDocument(this.document);
     }
 
-    private void configureHashMap(int tableNumber){
+    private void configureHashMaps(int tableNumber){
 
         boolean adding = true;
         /*
@@ -157,17 +159,16 @@ public class DocxCreator {
         FontRenderContext frc = new FontRenderContext(affineTransform, true, true);
         Font font = new Font("Calibri", Font.BOLD, fontSize);
 
-        HashMap<Integer, Integer> fontMap = new HashMap<>();
-        fontMap.put(2, 35);
-        fontMap.put(3, 28);
-        fontMap.put(4, 22);
-        fontMap.put(5, 16);
-
+        // 500 per substring add a space
+        // 1000 downsize to 35 whole string font 50
+        // 1500 downsize to 28 font 35
+        // 2000 downsize to 22 font 28
+        // Since the length starts at 1000 and goes up by increments of 500 this for loop is the most efficient way to structure this
         for (int i = 2; i < 6; i++){
 
             if (font.getStringBounds(string, frc).getWidth() > i * 500){
 
-                fontSize = fontMap.get(i);
+                fontSize = this.fontMap.get(i);
                 font = new Font("Calibri", Font.BOLD, fontSize);
 
             }
