@@ -9,11 +9,11 @@ public class Conjunction extends Word{
     public Conjunction(String translation, String latin){
 
         this.partOfSpeech = "Conjunction";
-        this.translation = cleanTranslation(translation);
+        this.translation = translation;
         this.latin = latin;
 
         super.partOfSpeech = "Conjunction";
-        super.translation = cleanTranslation(translation);
+        super.translation = translation;
         super.latin = latin;
 
     }

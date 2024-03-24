@@ -9,11 +9,11 @@ public class Adverb extends Word{
     public Adverb(String translation, String latin){
 
         this.partOfSpeech = "Adverb";
-        this.translation = cleanTranslation(translation);
+        this.translation = translation;
         this.latin = latin;
 
         super.partOfSpeech = "Adverb";
-        super.translation = cleanTranslation(translation);
+        super.translation = translation;
         super.latin = latin;
 
     }

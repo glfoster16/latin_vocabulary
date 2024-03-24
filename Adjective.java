@@ -7,11 +7,11 @@ public class Adjective extends Word {
 
     public Adjective(String translation, String latin){
         this.partOfSpeech = "Adjective";
-        this.translation = cleanTranslation(translation);
+        this.translation = translation;
         this.latin = cleanLatin(latin);
 
         super.partOfSpeech = "Adjective";
-        super.translation = cleanTranslation(translation);
+        super.translation = translation;
         super.latin = cleanLatin(latin);
 
     }

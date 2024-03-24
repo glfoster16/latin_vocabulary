@@ -12,11 +12,11 @@ public class Verb extends Word{
     public Verb(String translation, String latin){
         this.type = identifyType(latin);
         this.partOfSpeech = "Verb - " + this.type;
-        this.translation = cleanTranslation(translation);
+        this.translation = translation;
         this.latin = cleanLatin(latin, this.type);
 
         super.partOfSpeech = "Verb - " + this.type;
-        super.translation = cleanTranslation(translation);
+        super.translation = translation;
         super.latin = cleanLatin(latin, this.type);
 
     }

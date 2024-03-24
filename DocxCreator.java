@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.awt.Font;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
 
 
 public class DocxCreator {
@@ -144,6 +147,55 @@ public class DocxCreator {
         return ((words.size() / 4) + 1) * 2;
     }
 
+    private double getFontSize(String string){
+        // 500 per substring add a space
+        // 1000 downsize to 35 whole string font 50
+        // 1500 downsize to 28 font 35
+        // 2000 downsize to 22 font 28
+        int fontSize = 50;
+        AffineTransform affineTransform =  new AffineTransform();
+        FontRenderContext frc = new FontRenderContext(affineTransform, true, true);
+        Font font = new Font("Calibri", Font.BOLD, fontSize);
+
+        HashMap<Integer, Integer> fontMap = new HashMap<>();
+        fontMap.put(2, 35);
+        fontMap.put(3, 28);
+        fontMap.put(4, 22);
+        fontMap.put(5, 16);
+
+        for (int i = 2; i < 6; i++){
+
+            if (font.getStringBounds(string, frc).getWidth() > i * 500){
+
+                fontSize = fontMap.get(i);
+                font = new Font("Calibri", Font.BOLD, fontSize);
+
+            }
+        }
+
+        return fontSize;
+
+    }
+
+    private void preparePart(String part, double fontSize){
+
+        AffineTransform affineTransform =  new AffineTransform();
+        FontRenderContext frc = new FontRenderContext(affineTransform, true, true);
+        Font font = new Font("Calibri", Font.BOLD, (int) fontSize);
+
+        String[] parts = part.split(" ");
+        for (String splitPart : parts){
+
+            if (font.getStringBounds(splitPart, frc).getWidth() > 500){
+                StringBuilder builder = new StringBuilder();
+                builder.append(this.formattedParts.get(this.partCounter));
+                builder.insert(builder.length() / 2, " ");
+                this.formattedParts.set(this.partCounter, builder.toString());
+            }
+        }
+
+    }
+
     // These next four methods go together, it's one big chain
     private void createTable(XWPFDocument document){
 
@@ -190,18 +242,16 @@ public class DocxCreator {
         paragraph.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run = paragraph.createRun();
         run.setBold(true);
-        if (this.formattedParts.get(this.partCounter).length() +
-                this.formattedParts.get(this.partCounter + 1).length() > 70){
-            run.setFontSize(28);
-        } else if (this.formattedParts.get(this.partCounter).length() +
-                this.formattedParts.get(this.partCounter + 1).length() > 58){
-            run.setFontSize(35);
-        } else{
-            run.setFontSize(50);
-        }
+        double fontSize = getFontSize(this.formattedParts.get(this.partCounter));
+        run.setFontSize(fontSize);
+
+        preparePart(this.formattedParts.get(this.partCounter), fontSize);
         run.setText(this.formattedParts.get(this.partCounter));
         this.partCounter++;
+
         run.addBreak();
+
+        preparePart(this.formattedParts.get(this.partCounter), fontSize);
         run.setText(this.formattedParts.get(this.partCounter));
         this.partCounter++;
 
@@ -252,5 +302,4 @@ public class DocxCreator {
         }
 
     }
-
 }

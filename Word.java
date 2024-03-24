@@ -28,35 +28,6 @@ public class Word {
         this.json = object;
     }
 
-    // This ensures that the tables created using Apache POI won't be shifted left or right because
-    // of a substring being too long - this most commonly happened when a translation had many slashes
-    // For example, praesto: excel, surpass, be outstanding/superior/best/greater/preferable (to), prevail
-    // The outstanding/superior/best/greater/preferable is all one substring - this method splits that into two
-    public String cleanTranslation(String translation){
-
-        String[] parts = translation.split(" ");
-        StringBuilder translationBuilder = new StringBuilder();
-
-        for (String part : parts){
-
-            if(part.length() > 30){
-
-                StringBuilder builder = new StringBuilder();
-                builder.append(part);
-                builder.insert(builder.length() / 2, " ");
-
-                translationBuilder.append(builder).append(" ");
-                continue;
-
-            }
-
-            translationBuilder.append(part).append(" ");
-
-        }
-
-        return translationBuilder.toString();
-
-    }
 
     public static void assignPartOfSpeech(Word word){
 

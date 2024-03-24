@@ -7,11 +7,11 @@ public class Noun extends Word{
     public Noun(String translation, String latin){
 
         this.partOfSpeech = "Noun";
-        this.translation = cleanTranslation(translation);
+        this.translation = translation;
         this.latin = cleanLatin(latin);
 
         super.partOfSpeech = this.partOfSpeech;
-        super.translation = cleanTranslation(translation);
+        super.translation = translation;
         super.latin = cleanLatin(latin);
 
     }
