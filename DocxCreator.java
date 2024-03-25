@@ -2,11 +2,9 @@ import java.io.FileOutputStream;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 import java.math.BigInteger;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.awt.Font;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
@@ -91,6 +89,11 @@ public class DocxCreator {
                 adding = true;
             }
         }
+
+        this.fontMap.put(2,35);
+        this.fontMap.put(3, 28);
+        this.fontMap.put(4,22);
+        this.fontMap.put(5,18);
 
     }
 

@@ -1,12 +1,6 @@
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import userInput.getVariable;
 import org.json.JSONObject;
-
 
  class Main {
 
@@ -55,16 +49,7 @@ import org.json.JSONObject;
                  Word.assignPartOfSpeech(new Word(jsonObjects[0]));
              }
 
-//             for (Word word1 : Main.words){
-//                 if (word1 == null){
-//                     break;
-//                 }
-//                 System.out.println("printing: " + word1.latin);
-//                 System.out.println(word1);
-//             }
-
          }
-         //System.out.println(Main.words);
 
          DocxCreator docxCreator = new DocxCreator(Main.words);
          docxCreator.createDocument();
