@@ -7,7 +7,6 @@ import org.json.JSONObject;
      public static ArrayList<Word> words = new ArrayList<>();
      public static void main(String[] args){
 
-
          HttpHandler handler = new HttpHandler();
          JsonParser jsonParser = new JsonParser();
 
